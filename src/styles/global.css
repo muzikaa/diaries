@@ -4,7 +4,7 @@ html {
     scroll-behavior: smooth;
     font-family: "Montserrat Variable", sans-serif;
     background-color: lightpink;
-    color: white;
+    color: black;
 }
 
 main {
@@ -17,7 +17,7 @@ main {
 }
 
 .subemphasis {
-    color: #F582A7;
+    color: hotpink;
     font-weight: 600;
 }
 
