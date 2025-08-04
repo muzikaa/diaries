@@ -1,14 +1,9 @@
 import type { APIRoute } from 'astro';
 import { app } from "../../../firebase/server";
 import { getFirestore } from "firebase-admin/firestore";
-import { requireUser } from "../../diaries/_guard.ts";
 
-export const GET: APIRoute = async ({ request, cookies }) => {
+export const GET: APIRoute = async () => {
   try {
-    // Check user authentication
-    await requireUser({ cookies });
-
-    // Fetch posts from Firestore
     const db = getFirestore(app);
     const postsRef = db.collection("posts");
     const snapshot = await postsRef.get();
