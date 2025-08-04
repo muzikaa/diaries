@@ -7,15 +7,12 @@ export async function requireUser(Astro: any) {
   const auth = getAuth(app);
   const sessionCookie = Astro.cookies.get("__session")?.value;
 
-  if (!sessionCookie) {
-    return Astro.redirect("/signin");
-  }
+  if (!sessionCookie) throw new Error("Unauthorized");
 
   try {
     const decoded = await auth.verifySessionCookie(sessionCookie);
-    const user = await auth.getUser(decoded.uid);
-    return user;
+    return await auth.getUser(decoded.uid);
   } catch {
-    return Astro.redirect("/signin");
+    throw new Error("Unauthorized");
   }
 }
