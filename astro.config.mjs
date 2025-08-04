@@ -11,6 +11,7 @@ export default defineConfig({
   },
 
   output: "server",
+  site: "https://diaries-umber.vercel.app",
 
   adapter: vercel(),
 });

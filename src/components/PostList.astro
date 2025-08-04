@@ -7,7 +7,7 @@ let posts = [];
 let error = null;
 
 try {
-  const res = await fetch('/api/posts');
+  const res = await fetch(import.meta.env.SITE + '/api/posts');
   if (!res.ok) throw new Error('Failed to load posts');
   posts = await res.json();
 } catch (err) {
