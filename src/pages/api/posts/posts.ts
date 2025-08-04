@@ -4,6 +4,8 @@ import { getFirestore } from "firebase-admin/firestore";
 
 export const GET: APIRoute = async () => {
   try {
+    console.log(process.env.FIREBASE_PROJECT_ID);
+
     const db = getFirestore(app);
     const postsRef = db.collection("posts");
     const snapshot = await postsRef.get();
