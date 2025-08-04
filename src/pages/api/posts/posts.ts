@@ -15,9 +15,9 @@ export const GET: APIRoute = async () => {
 
     return new Response(JSON.stringify(posts), {
       status: 200,
-      headers: { "Content-Type": "application/json" }
+      headers: { "Content-Type": "application/json" },
     });
   } catch (err) {
-    return new Response("Unauthorized", { status: 401 });
+    return new Response("Failed to fetch posts", { status: 500 });
   }
 };
