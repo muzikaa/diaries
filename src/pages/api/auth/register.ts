@@ -25,7 +25,7 @@ export const POST: APIRoute = async ({ request, redirect }) => {
     });
   } catch (error: any) {
     return new Response(
-      "Something went wrong",
+      "You are not authorized to do this!",
       { status: 400 }
     );
   }
