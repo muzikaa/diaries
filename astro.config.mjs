@@ -4,12 +4,19 @@ import tailwindcss from "@tailwindcss/vite";
 
 import auth from "auth-astro";
 
+import node from "@astrojs/node";
+
 // https://astro.build/config
 export default defineConfig({
-    vite: {
-      plugins: [tailwindcss()]
-    },
-    output: "server",
-    base: "diaries",
-    site: 'https://muzikaa.github.io'
+  vite: {
+    plugins: [tailwindcss()]
+  },
+
+  output: "server",
+  base: "diaries",
+  site: 'https://muzikaa.github.io',
+
+  adapter: node({
+    mode: "standalone"
+  })
 });
