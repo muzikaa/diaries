@@ -22,8 +22,12 @@ try {
         <div class="p-3" />
         <label for="body" class=" text-2xl">Body: </label>
         <br/><div class="p-0.5" />
-        <textarea id="body" name="body" class="mr-1 ml-1" />
-        <br /><div class="p-0.5" />
+        <div class="editable mr-1 ml-1" id="editable">
+
+        </div>
+        <textarea id="body" name="body" class="mr-1 ml-1 textarea" hidden></textarea>
+        <br />
+        <div class="p-0.5" />
         <button type="submit" class="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-500 to-pink-500 group-hover:from-purple-500 group-hover:to-pink-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800">
             <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-[#180A0A] rounded-md group-hover:bg-transparent group-hover:dark:bg-transparent">
             Publish Post
@@ -48,7 +52,25 @@ try {
         height: 20rem;
     }
 
+    .editable {
+        min-height: 200px;
+        border: 2px solid white;
+        border-radius: 0.5rem;
+        padding: 0.5rem;
+        white-space: pre-wrap;
+        overflow-wrap: break-word;
+        outline: none;
+    }
+
     form {
         padding: 1rem 0;
     }
 </style>
+
+<script>
+    document.querySelector('form')!.addEventListener('submit', function(e) {
+        document.getElementById('body')!.value = document.getElementById('editable')!.innerText;
+    });
+
+    document.querySelectorAll('.editable').forEach(el => el.contentEditable = "true");
+</script>
