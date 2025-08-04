@@ -2,7 +2,7 @@
 import { defineConfig } from 'astro/config';
 import tailwindcss from "@tailwindcss/vite";
 
-import cloudflare from "@astrojs/cloudflare";
+import vercel from "@astrojs/vercel";
 
 // https://astro.build/config
 export default defineConfig({
@@ -11,13 +11,10 @@ export default defineConfig({
   },
 
   output: "server",
-  base: "diaries",
+
   // site: 'https://muzikaa.github.io/',
   // server: { port: parseInt(process.env.PORT) || 4321, host: true },
-  adapter: cloudflare({
-    platformProxy: {
-      enabled: true,
-      configPath: 'wrangler.jsonc',
-    },
-  }),
+  base: "diaries",
+
+  adapter: vercel(),
 });
