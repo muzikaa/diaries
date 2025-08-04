@@ -6,6 +6,8 @@ import auth from "auth-astro";
 
 import node from "@astrojs/node";
 
+import cloudflare from "@astrojs/cloudflare";
+
 // https://astro.build/config
 export default defineConfig({
   vite: {
@@ -16,7 +18,5 @@ export default defineConfig({
   base: "diaries",
   site: 'https://muzikaa.github.io/',
   server: { port: parseInt(process.env.PORT) || 4321, host: true },
-  adapter: node({
-    mode: "standalone"
-  })
+  adapter: cloudflare()
 });
