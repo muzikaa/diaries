@@ -3,19 +3,26 @@ import Post from "../components/Post.astro";
 
 const { edit } = Astro.props;
 
-const res = await fetch('/api/posts');
-if (!res.ok) {
-  // handle unauthorized or error states, maybe redirect or show message
-  throw new Error('Failed to load posts');
+let posts = [];
+let error = null;
+
+try {
+  const res = await fetch('/api/posts');
+  if (!res.ok) throw new Error('Failed to load posts');
+  posts = await res.json();
+} catch (err) {
+  console.error("Error loading posts:", err);
+  error = "Posts cannot be displayed.";
 }
-const posts = await res.json();
 ---
 <h1 class="text-5xl pd-3 emphasis">Posts</h1>
 
+{error ? (
+<p class="text-red-500 mt-4">{error}</p>
+  ) : (
 <ul>
-  {
-    posts.map((post: any) => (
-            <Post post={post} edit={edit}></Post>
-    ))
-  }
+  {posts.map((post: any) => (
+          <Post post={post} edit={edit} />
+  ))}
 </ul>
+  )}
