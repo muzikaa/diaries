@@ -28,7 +28,7 @@ const post = postSnapshot.data() as Post;
 <Main>
     <h1 class="text-5xl emphasis">Edit {post.title}</h1>
     <p class="text-3xl subemphasis">Here you can edit or delete your posts.</p>
-    <form method="post" action={`/diaries/api/posts/${id}`}>
+    <form method="post" action={`/api/posts/${id}`}>
         <label for="title" class="text-2xl">Title: </label>
         <input type="text" id="title" name="title" value={post.title} class="mr-1 ml-1 mb-5 text-xl mt-3 px-1.5 py-1" />
         <br />

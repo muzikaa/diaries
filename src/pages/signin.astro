@@ -15,8 +15,8 @@ if (Astro.cookies.has("__session")) {
 ---
 <Main>
     <h1 class="text-8xl pl-10 p-7 emphasis">Sign in</h1>
-    <p class="pl-10 text-2xl subemphasis pb-5">New here? <a href="/diaries/register">Create an account</a></p>
-    <form class="pl-10 " action="/diaries/api/auth/signin" method="post">
+    <p class="pl-10 text-2xl subemphasis pb-5">New here? <a href="/register">Create an account</a></p>
+    <form class="pl-10 " action="/api/auth/signin" method="post">
         <label class="text-2xl white font-bold" for="email" for="email">Email: </label>
         <input class="textinput mb-2 text-2xl" type="email" name="email" id="email" />
         <br/>

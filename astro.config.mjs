@@ -12,9 +12,5 @@ export default defineConfig({
 
   output: "server",
 
-  // site: 'https://muzikaa.github.io/',
-  // server: { port: parseInt(process.env.PORT) || 4321, host: true },
-  base: "diaries",
-
   adapter: vercel(),
 });

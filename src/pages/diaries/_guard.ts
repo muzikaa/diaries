@@ -8,7 +8,7 @@ export async function requireUser(Astro: any) {
   const sessionCookie = Astro.cookies.get("__session")?.value;
 
   if (!sessionCookie) {
-    return Astro.redirect("/diaries/signin");
+    return Astro.redirect("/signin");
   }
 
   try {
@@ -16,6 +16,6 @@ export async function requireUser(Astro: any) {
     const user = await auth.getUser(decoded.uid);
     return user;
   } catch {
-    return Astro.redirect("/diaries/signin");
+    return Astro.redirect("/signin");
   }
 }

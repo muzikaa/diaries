@@ -18,10 +18,10 @@ const {post, edit, self=false} = Astro.props;
 
 <li>
     <div class="flex items-center mt-3" >
-        <h1 class="subemphasis text-4xl">{self ? post.title : <a href={`/diaries/post/${post.id}`}>{post.title}</a>}</h1>
+        <h1 class="subemphasis text-4xl">{self ? post.title : <a href={`/post/${post.id}`}>{post.title}</a>}</h1>
         <button hidden={edit != true} type="submit" class="ml-4 relative inline-flex items-center justify-center p-0.5 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-500 to-pink-500 group-hover:from-purple-500 group-hover:to-pink-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800">
                       <span class="relative px-5 py-1 transition-all ease-in duration-75 bg-[#180A0A] rounded-md group-hover:bg-transparent group-hover:dark:bg-transparent">
-                        <a href={`/diaries/edit/${post.id}`}>Edit</a>
+                        <a href={`/edit/${post.id}`}>Edit</a>
                       </span>
         </button>
         <br />

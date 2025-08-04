@@ -9,14 +9,14 @@ const auth = getAuth(app);
 
 /* Check current session */
 if (!Astro.cookies.has("__session")) {
-    return Astro.redirect("/diaries/signin");
+    return Astro.redirect("/signin");
 }
 const sessionCookie = Astro.cookies.get("__session")!.value;
 const decodedCookie = await auth.verifySessionCookie(sessionCookie);
 const user = await auth.getUser(decodedCookie.uid);
 
 if (!user) {
-  return Astro.redirect("/diaries/signin");
+  return Astro.redirect("/signin");
 }
 ---
 
@@ -24,7 +24,7 @@ if (!user) {
     <h1 class="text-5xl emphasis">Welcome</h1>
 
     <h1 class="text-3xl subemphasis pt-2">Add a new post</h1>
-    <form method="post" action="/diaries/api/posts">
+    <form method="post" action="/api/posts">
         <label for="title" class="text-2xl">Title: </label>
         <br /> <div class="p-0.5" />
         <input type="text" id="title" name="title" class="mr-1 ml-1 " />

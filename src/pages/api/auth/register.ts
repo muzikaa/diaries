@@ -29,5 +29,5 @@ export const POST: APIRoute = async ({ request, redirect }) => {
       { status: 400 }
     );
   }
-  return redirect("/diaries/signin");
+  return redirect("/signin");
 };
