@@ -1,10 +1,6 @@
-// @ts-check
+// @ts-expect-error
 import { defineConfig } from 'astro/config';
 import tailwindcss from "@tailwindcss/vite";
-
-import auth from "auth-astro";
-
-import node from "@astrojs/node";
 
 import cloudflare from "@astrojs/cloudflare";
 
@@ -16,7 +12,7 @@ export default defineConfig({
 
   output: "server",
   base: "diaries",
-  site: 'https://muzikaa.github.io/',
-  server: { port: parseInt(process.env.PORT) || 4321, host: true },
+  // site: 'https://muzikaa.github.io/',
+  // server: { port: parseInt(process.env.PORT) || 4321, host: true },
   adapter: cloudflare()
 });

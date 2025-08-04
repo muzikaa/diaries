@@ -3,7 +3,7 @@
   "name": "diaries",
   "main": "./dist/_worker.js/index.js",
   // Update to today's date
-  "compatibility_date": "2025-08-03",
+  "compatibility_date": "2025-08-04",
   "compatibility_flags": ["nodejs_compat"],
   "assets": {
     "binding": "ASSETS",
