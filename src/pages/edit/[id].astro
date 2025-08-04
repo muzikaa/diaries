@@ -69,11 +69,15 @@ const cleanHTML = DOMPurify.sanitize(post.body);
         border-radius: 5px;
     }
 
-    textarea {
+    .editable {
         border: 2px solid white;
         border-radius: .5rem;
         width: 80%;
         height: 20rem;
+
+        white-space: pre-wrap;
+        overflow-wrap: break-word;
+        outline: none;
     }
 </style>
 
