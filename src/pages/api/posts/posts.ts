@@ -8,7 +8,7 @@ export const GET: APIRoute = async () => {
       project_id: process.env.FIREBASE_PROJECT_ID,
       private_key_id: process.env.FIREBASE_PRIVATE_KEY_ID,
       client_email: process.env.FIREBASE_CLIENT_EMAIL,
-      private_key_exists: Boolean(process.env.FIREBASE_PRIVATE_KEY),
+      private_key_exists: process.env.FIREBASE_PRIVATE_KEY,
     });
 
     const db = getFirestore(app);
