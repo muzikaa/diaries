@@ -4,7 +4,12 @@ import { getFirestore } from "firebase-admin/firestore";
 
 export const GET: APIRoute = async () => {
   try {
-    console.log(process.env.FIREBASE_PROJECT_ID);
+    console.log({
+      project_id: process.env.FIREBASE_PROJECT_ID,
+      private_key_id: process.env.FIREBASE_PRIVATE_KEY_ID,
+      client_email: process.env.FIREBASE_CLIENT_EMAIL,
+      private_key_exists: Boolean(process.env.FIREBASE_PRIVATE_KEY),
+    });
 
     const db = getFirestore(app);
     const postsRef = db.collection("posts");
