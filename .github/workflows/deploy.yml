@@ -18,6 +18,7 @@ jobs:
         uses: actions/checkout@v4
       - name: Install, build, and upload your site
         uses: withastro/action@v3
+
   deploy:
     needs: build
     runs-on: ubuntu-latest
@@ -25,6 +26,18 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
+      - name: Env Variables
+        run: echo "Setting variables"
+        env:
+          FIREBASE_PRIVATE_KEY_ID: ${{ vars.FIREBASE_PRIVATE_KEY_ID }}
+          FIREBASE_PRIVATE_KEY: ${{ vars.FIREBASE_PRIVATE_KEY }}
+          FIREBASE_PROJECT_ID: ${{ vars.FIREBASE_PROJECT_ID }}
+          FIREBASE_CLIENT_EMAIL: ${{ vars.FIREBASE_CLIENT_EMAIL }}
+          FIREBASE_CLIENT_ID: ${{ vars.FIREBASE_CLIENT_ID }}
+          FIREBASE_AUTH_URI: ${{ vars.FIREBASE_AUTH_URI }}
+          FIREBASE_TOKEN_URI: ${{ vars.FIREBASE_TOKEN_URI }}
+          FIREBASE_AUTH_CERT_URL: ${{ vars.FIREBASE_AUTH_CERT_URL }}
+          FIREBASE_CLIENT_CERT_URL: ${{ vars.FIREBASE_CLIENT_CERT_URL }}
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4

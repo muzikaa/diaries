@@ -15,7 +15,7 @@ export default defineConfig({
   output: "server",
   base: "diaries",
   site: 'https://muzikaa.github.io/',
-
+  server: { port: parseInt(process.env.PORT) || 4321, host: true },
   adapter: node({
     mode: "standalone"
   })
