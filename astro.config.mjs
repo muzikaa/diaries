@@ -14,7 +14,7 @@ export default defineConfig({
 
   output: "server",
   base: "diaries",
-  site: 'https://muzikaa.github.io',
+  site: 'https://muzikaa.github.io/',
 
   adapter: node({
     mode: "standalone"
