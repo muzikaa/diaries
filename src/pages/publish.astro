@@ -68,9 +68,12 @@ try {
 </style>
 
 <script>
-    document.querySelector('form')!.addEventListener('submit', function(e) {
-        document.getElementById('body')!.value = document.getElementById('editable')!.innerText;
-    });
+    document.addEventListener("DOMContentLoaded", () => {
+        document.querySelector('form')!.addEventListener('submit', function(e) {
+            (document.getElementById('body')as HTMLInputElement)!.value =
+              (document.getElementById('editable'))!.innerHTML;
+        });
 
-    document.querySelectorAll('.editable').forEach(el => el.contentEditable = "true");
+        document.querySelectorAll('.editable').forEach(el => (el as HTMLElement).contentEditable = "true");
+    });
 </script>
