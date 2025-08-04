@@ -17,7 +17,8 @@ export const GET: APIRoute = async () => {
       status: 200,
       headers: { "Content-Type": "application/json" },
     });
-  } catch (err) {
+  } catch (err: any) {
+    console.error('Error fetching posts:', err);
     return new Response("Failed to fetch posts", { status: 500 });
   }
 };
