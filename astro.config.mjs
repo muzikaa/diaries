@@ -14,5 +14,10 @@ export default defineConfig({
   base: "diaries",
   // site: 'https://muzikaa.github.io/',
   // server: { port: parseInt(process.env.PORT) || 4321, host: true },
-  adapter: cloudflare()
+  adapter: cloudflare({
+    platformProxy: {
+      enabled: true,
+      configPath: 'wrangler.jsonc',
+    },
+  }),
 });
