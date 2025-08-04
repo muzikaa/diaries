@@ -1,0 +1,26 @@
+@import "tailwindcss";
+
+html {
+    scroll-behavior: smooth;
+    font-family: "Montserrat Variable", sans-serif;
+    background-color: #3D365C;
+    color: white;
+}
+
+main {
+    padding: calc(var(--spacing) * 20);
+}
+
+.emphasis {
+    color: #F10086;
+    font-weight: 800;
+}
+
+.subemphasis {
+    color: #F582A7;
+    font-weight: 600;
+}
+
+.subtitle {
+    color: #7C4585;
+}

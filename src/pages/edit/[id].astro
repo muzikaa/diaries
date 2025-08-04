@@ -1,0 +1,80 @@
+---
+import { app } from "../../firebase/server";
+import { getFirestore } from "firebase-admin/firestore";
+import Main from "../../layouts/Main.astro";
+
+interface Post {
+  title: string;
+  body: number;
+  timestamp: Date;
+}
+
+const { id } = Astro.params;
+
+if (!id) {
+  return Astro.redirect("/404");
+}
+
+const db = getFirestore(app);
+const postsRef = db.collection("posts");
+const postSnapshot = await postsRef.doc(id).get();
+
+if (!postSnapshot.exists) {
+  return Astro.redirect("/404");
+}
+
+const post = postSnapshot.data() as Post;
+---
+<Main>
+    <h1 class="text-5xl emphasis">Edit {post.title}</h1>
+    <p class="text-3xl subemphasis">Here you can edit or delete your posts.</p>
+    <form method="post" action={`/diaries/api/posts/${id}`}>
+        <label for="title" class="text-2xl">Title: </label>
+        <input type="text" id="title" name="title" value={post.title} class="mr-1 ml-1 mb-5 text-xl mt-3 px-1.5 py-1" />
+        <br />
+        <label for="body" class="align-top text-2xl">Body: </label>
+        <textarea id="body" name="body" class="px-1.5 py-1 text-xl">{post.body}</textarea>
+
+        <br /><div class="p-0.5" />
+        <button type="submit" class="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-500 to-pink-500 group-hover:from-purple-500 group-hover:to-pink-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800">
+            <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-[#180A0A] rounded-md group-hover:bg-transparent group-hover:dark:bg-transparent">
+                Submit Changes
+            </span>
+        </button>
+    </form>
+    <div class="p-0.5" />
+    <button type="submit" class="mt-6 relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-500 to-pink-500 group-hover:from-purple-500 group-hover:to-pink-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800">
+            <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-[#180A0A] rounded-md group-hover:bg-transparent group-hover:dark:bg-transparent">
+                Delete Post
+            </span>
+    </button>
+</Main>
+
+<style>
+    input {
+        border: 2px solid white;
+        border-radius: 5px;
+    }
+
+    textarea {
+        border: 2px solid white;
+        border-radius: .5rem;
+        width: 80%;
+        height: 20rem;
+    }
+</style>
+
+<script>
+  const deleteButton = document.getElementById(
+    "delete-document"
+  ) as HTMLButtonElement;
+  const url = document.querySelector("form")?.getAttribute("action") as string;
+  deleteButton.addEventListener("click", async () => {
+    const response = await fetch(url, {
+      method: "DELETE",
+    });
+    if (response.redirected) {
+      window.location.assign(response.url);
+    }
+  });
+</script>

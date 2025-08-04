@@ -1,0 +1,52 @@
+---
+
+interface PostInfo {
+  id: number;
+  title: string;
+  body: number;
+  timestamp: Date;
+}
+
+interface Props {
+  post: PostInfo;
+  edit: boolean;
+  self?: boolean;
+}
+
+const {post, edit, self=false} = Astro.props;
+---
+
+<li>
+    <div class="flex items-center mt-3" >
+        <h1 class="subemphasis text-4xl">{self ? post.title : <a href={`/diaries/post/${post.id}`}>{post.title}</a>}</h1>
+        <button hidden={edit != true} type="submit" class="ml-4 relative inline-flex items-center justify-center p-0.5 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-500 to-pink-500 group-hover:from-purple-500 group-hover:to-pink-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800">
+                      <span class="relative px-5 py-1 transition-all ease-in duration-75 bg-[#180A0A] rounded-md group-hover:bg-transparent group-hover:dark:bg-transparent">
+                        <a href={`/diaries/edit/${post.id}`}>Edit</a>
+                      </span>
+        </button>
+        <br />
+    </div>
+    <span class="mr-5 text-l text-gray-400">({new Date(post.timestamp).toLocaleDateString("en-US",
+      { weekday: "long", timeZone: "CST", month: "long", day: "numeric", year: "numeric",
+        hour: "numeric", minute: "numeric"})})</span>
+    <br/>
+    <pre class:list={{ 'body': !self }}>{post.body}</pre>
+
+</li>
+
+<style>
+    .body {
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+    }
+    li {
+        list-style-type: none;
+    }
+    pre {
+        white-space: pre-wrap; /* This is the key property! */
+        word-wrap: break-word; /* For very long words that don't have spaces */
+        overflow-wrap: break-word; /* Modern equivalent of word-wrap: break-word */
+    }
+</style>

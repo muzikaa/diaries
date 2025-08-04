@@ -1,0 +1,34 @@
+---
+import { app } from "../firebase/server";
+import { getFirestore } from "firebase-admin/firestore";
+import {requireUser} from "../pages/diaries/_guard";
+import Post from "../components/Post.astro";
+let user = await requireUser(Astro);
+
+interface Post {
+  id: number;
+  title: string;
+  body: number;
+  timestamp: Date;
+}
+
+const db = getFirestore(app);
+const postsRef = db.collection("posts");
+const postSnapshot = await postsRef.get();
+const posts = postSnapshot.docs.map((post: any) => ({
+  id: post.id,
+  ...post.data(),
+})) as
+  Post[];
+
+const { edit } = Astro.props;
+---
+<h1 class="text-5xl pd-3 emphasis">Posts</h1>
+
+<ul>
+  {
+    posts.map((post) => (
+            <Post post={post} edit={edit}></Post>
+    ))
+  }
+</ul>
