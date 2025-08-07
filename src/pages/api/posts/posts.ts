@@ -13,7 +13,7 @@ export const GET: APIRoute = async () => {
 
     const db = getFirestore(app);
     const postsRef = db.collection("posts");
-    const snapshot = await postsRef.orderBy("timestamp").get();
+    const snapshot = await postsRef.orderBy("timestamp", "desc").get();
 
     const posts = snapshot.docs.map(doc => ({
       id: doc.id,
